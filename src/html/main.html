@@ -3,118 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>teaching-feeling Launcher</title>
-  <script src="/preload.js"> </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #1a1a1a;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .container {
-      display: flex;
-      width: 100%;
-      height: 100%;
-    }
-
-    .sidebar {
-      background-color: #ff66b3;
-      width: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .sidebar img {
-      width: 40px;
-      margin: 15px 0;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .sidebar img:hover {
-      transform: scale(1.1);
-    }
-
-    .main-content {
-    flex-grow: 1;
-    position: relative;
-    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Ff%2Fe4c08916-732b-409b-a55e-42a093cdf10c%2Fd9o8gdy-af3265d7-020f-434f-bfd1-05ced0c39381.png%3Ftoken%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2U0YzA4OTE2LTczMmItNDA5Yi1hNTVlLTQyYTA5M2NkZjEwY1wvZDlvOGdkeS1hZjMyNjVkNy0wMjBmLTQzNGYtYmZkMS0wNWNlZDBjMzkzODEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KzpfsiI0JK9XImoSqAJK3SxrPi5K2vHjQFG6cOosvJ0&f=1&nofb=1&ipt=db24fa2d432707b9bb98dd47ffb9428fa9a33557e1db7c03b41595013bab00c1&ipo=images'); 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    overflow: hidden;
-}
-
-    .main-content::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: #fff;
-    }
-
-    .content h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .content p {
-      margin: 10px 0;
-      font-size: 1.2em;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .buttons {
-      margin-top: 30px;
-    }
-
-    .buttons button a {
-      text-decoration: none;
-      color: white;
-    }
-
-    .buttons button {
-      background-color: #ff66b3;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 16px;
-      cursor: pointer;
-      margin: 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .buttons button:hover {
-      background-color: #ff3385;
-      transform: translateY(-3px);
-    }
-  </style>
+  <link rel="stylesheet" href="../CSS/main.css" />
 </head>
 <body>
   <div class="container">
@@ -130,14 +19,37 @@
         <p>Unofficial launcher of the educational game teaching feeling that contains <br>
            fan-made versions of the game in different languages. 😗</p>
 
-           <p>launcher-version: 1.0.0<span id="launcher-version"></span></p>
+           <p>Launcher version: <div id="launcher-version"></div></p>
 
            <div class="buttons">
             <button><a href="https://www.youtube.com">Youtube</a></button>
             <button><a href="https://www.donate.com">Donate</a></button>
+            <button id="modalBtn">Select Soundtrack</button>
           </div>          
       </div>
     </div>
   </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Select a Soundtrack</h2>
+      </div>
+      <div class="modal-body">
+        <p>Choose your favorite soundtrack from the list below:</p>
+        <ul>
+          <li><button>Soundtrack 1</button></li>
+          <li><button>Soundtrack 2</button></li>
+          <li><button>Soundtrack 3</button></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </body>
+<script src="../js/modal.js"></script>
+<script src="../js/version.js"></script>
 </html>
