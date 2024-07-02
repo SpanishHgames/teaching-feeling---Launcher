@@ -4,6 +4,7 @@ const fs = require('fs');
 const { exec } = require('child_process');
 
 let executablePath = null;
+let originalContent = null;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -71,22 +72,43 @@ ipcMain.handle('save-config', async () => {
 });
 
 ipcMain.handle('start-game', () => {
-  if (executablePath) {
-    exec(`"${executablePath}"`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing file: ${error.message}`);
-        return 'Failed to start the game.';
+  return new Promise((resolve, reject) => {
+    if (executablePath) {
+      const indexPath = path.join(path.dirname(executablePath), 'resources', 'app', 'index.html');
+      if (fs.existsSync(indexPath)) {
+        originalContent = fs.readFileSync(indexPath, 'utf8');
+        const modifiedContent = originalContent.replace('</body>', `
+          <div style="position: fixed; top: 20px; left: 20px;">
+            <div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-align: center;">
+              TeachFeel v1.0.0
+            </div>
+          </div>
+          </body>
+        `);
+        fs.writeFileSync(indexPath, modifiedContent);
+
+        exec(`"${executablePath}"`, (error, stdout, stderr) => {
+          // Revert changes to index.html after the game closes
+          fs.writeFileSync(indexPath, originalContent);
+
+          if (error) {
+            console.error(`Error executing file: ${error.message}`);
+            resolve('Failed to start the game.');
+          } else if (stderr) {
+            console.error(`Error: ${stderr}`);
+            resolve('Failed to start the game.');
+          } else {
+            console.log(`Output: ${stdout}`);
+            resolve('Game started successfully.');
+          }
+        });
+      } else {
+        resolve('Index file not found.');
       }
-      if (stderr) {
-        console.error(`Error: ${stderr}`);
-        return 'Failed to start the game.';
-      }
-      console.log(`Output: ${stdout}`);
-      return 'Game started successfully.';
-    });
-  } else {
-    return 'Executable path not set.';
-  }
+    } else {
+      resolve('Executable path not set.');
+    }
+  });
 });
 
 ipcMain.handle('get-executable-path', () => {
