@@ -81,7 +81,7 @@ ipcMain.handle('start-game', () => {
         originalContent = fs.readFileSync(indexPath, 'utf8');
         const modifiedContent = originalContent.replace('</body>', `
           <div style="position: fixed; top: 20px; left: 20px;"><div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-align: center; display: inline;">TeachFeel v1.0.0</div></div>
-          </body>
+  </body>
         `);
         fs.writeFileSync(indexPath, modifiedContent);
 
