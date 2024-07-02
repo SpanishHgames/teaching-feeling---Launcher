@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sidebar {
+    background-color: #333;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .sidebar img {
+    width: 40px;
+    margin: 15px 0;
+    cursor: pointer;
+  }
+
+  .main-content {
+    flex-grow: 1;
+    position: relative;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Ff%2Fe4c08916-732b-409b-a55e-42a093cdf10c%2Fd9o8gdy-af3265d7-020f-434f-bfd1-05ced0c39381.png%3Ftoken%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2U0YzA4OTE2LTczMmItNDA5Yi1hNTVlLTQyYTA5M2NkZjEwY1wvZDlvOGdkeS1hZjMyNjVkNy0wMjBmLTQzNGYtYmZkMS0wNWNlZDBjMzkzODEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KzpfsiI0JK9XImoSqAJK3SxrPi5K2vHjQFG6cOosvJ0&f=1&nofb=1&ipt=db24fa2d432707b9bb98dd47ffb9428fa9a33557e1db7c03b41595013bab00c1&ipo=images'); /* Reemplaza 'background.jpg' con la ruta de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .main-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+  }
+
+  .content h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  .content p {
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+
+  .buttons {
+    margin-top: 30px;
+  }
+
+  .buttons button {
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  .buttons button:hover {
+    background-color: #0088cc;
+  }
+
+  .setup-button {
+    background-color: #00aaff;
+  }
