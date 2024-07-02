@@ -5,9 +5,10 @@ const { exec } = require('child_process');
 
 let executablePath = null;
 let originalContent = null;
+let mainWindow = null;
 
 function createWindow() {
-  const win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -18,7 +19,8 @@ function createWindow() {
     },
   });
 
-  win.loadFile('src/html/main.html');
+  mainWindow.loadFile('src/html/main.html');
+  mainWindow.setMenu(null);
 
   // Load the configuration file when the window is created
   loadConfig();
@@ -78,16 +80,18 @@ ipcMain.handle('start-game', () => {
       if (fs.existsSync(indexPath)) {
         originalContent = fs.readFileSync(indexPath, 'utf8');
         const modifiedContent = originalContent.replace('</body>', `
-          <div style="position: fixed; top: 20px; left: 20px;">
-            <div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-align: center;">
-              TeachFeel v1.0.0
-            </div>
-          </div>
+          <div style="position: fixed; top: 20px; left: 20px;"><div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-align: center; display: inline;">TeachFeel v1.0.0</div></div>
           </body>
         `);
         fs.writeFileSync(indexPath, modifiedContent);
 
+        // Hide the main window before starting the game
+        mainWindow.hide();
+
         exec(`"${executablePath}"`, (error, stdout, stderr) => {
+          // Show the main window after the game closes
+          mainWindow.show();
+
           // Revert changes to index.html after the game closes
           fs.writeFileSync(indexPath, originalContent);
 
