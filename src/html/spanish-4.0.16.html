@@ -27,10 +27,32 @@
         <div class="buttons">
           <button id="start-button-es">Iniciar</button>
           <button id="setup-button-es">Configurar</button>
+          <button id="modalBtn">Descargar Juego</button>
         </div>         
       </div>
     </div>
+
+      <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Descargar Teaching feeling V4.0.16</h2>
+      </div>
+      <div class="modal-body">
+        <p>Elige la version que soporta tu pc Teaching feeling 4.0.16 estan disponible la de 64 bits y 32 bits</p>
+        <ul>
+          <li><button onclick="window.location.href='https://github.com/SpanishHgames/teaching-feeling---Launcher/releases/download/setupsV1.0.0/TeachFeel.Spanish.-.V4.0.16.64.bits.rar'">TeachFeel Spanish - V4.0.16 (64 bits)</button></li>
+          <li><button onclick="window.location.href='https://github.com/SpanishHgames/teaching-feeling---Launcher/releases/download/setupsV1.0.0/TeachFeel.Spanish.-.V4.0.16.32.bits.rar'">TeachFeel Spanish - V4.0.16 (32 bits)</button></li>          
+        </ul>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+
   </div>
   <script src="../js/render-es.js"></script>
+  <script src="../js/modal.js"></script>
 </body>
 </html>
