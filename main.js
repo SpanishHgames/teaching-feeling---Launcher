@@ -23,7 +23,6 @@ function createWindow() {
   mainWindow.loadFile(path.join(__dirname, 'src', 'html', 'main.html'));
   mainWindow.setMenu(null);
 
-  // Cargar las configuraciones cuando se crea la ventana
   loadConfigs();
 }
 
@@ -126,14 +125,11 @@ function startGame(executablePath, language) {
         `);
         fs.writeFileSync(indexPath, modifiedContent);
 
-        // Ocultar la ventana principal antes de iniciar el juego
         mainWindow.hide();
 
         exec(`"${executablePath}"`, (error, stdout, stderr) => {
-          // Mostrar la ventana principal después de cerrar el juego
           mainWindow.show();
 
-          // Revertir los cambios en index.html después de cerrar el juego
           fs.writeFileSync(indexPath, originalContent);
 
           if (error) {
