@@ -3,9 +3,9 @@
 [if exp="f.d_head.tc=='a1'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a1.png" ]
 ;[elsif exp="f.d_head.tc=='a2'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a2 ]
 [else][chara_mod wait="false" name="hat" time="0" storage="00.png" ][endif][return]
-*hat_a10
-[if exp="f.d_head.tc=='a1'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a10.png" ]
-;[elsif exp="f.d_head.tc=='a2'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a20" ]
+*hat_a1-
+[if exp="f.d_head.tc=='a1'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a1-.png" ]
+;[elsif exp="f.d_head.tc=='a2'" ][chara_mod wait="false" name="hat" time="0" storage="TF/H/nurse/hat/a2-" ]
 [else][chara_mod wait="false" name="hat" time="0" storage="00.png" ][endif][return]
 
 
@@ -142,7 +142,7 @@
 	四肢がこちらの胴に絡み、密着感を楽しんでいるようだ。[p]
 [bg/ g=H_nurse st=b3 ]
 ;[nurse_dress st=4 ]
-[h_ef/ se=2_3-7 tx=2_3 ef=2_3 ][call target="*hat_a1" ][se/ l=t st=l-wet2 ]
+[h_ef/ se=2_3-7 tx=2_3 ef=2_3 ][call target="*hat_a1-" ][se/ l=t st=l-wet2 ]
 	[syl]はぁっ！♡…あぁっ！！♡…！♡♡[p]
 	[_]（こちらも溜まっていたので我慢ならず、速めのペースでピストンを始める。[p]
 [bg/ g=H_nurse st=b4 ][h_ef/ tx=2_4 ef=2_4 ]
