@@ -26,6 +26,7 @@ body {
   align-items: center;
   padding-top: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .sidebar img {
@@ -38,6 +39,22 @@ body {
 .sidebar img:hover {
   transform: scale(1.1);
 }
+
+.settings-button {
+  position: absolute;
+  bottom: 20px; /* Distance from the bottom of the sidebar */
+}
+
+.settings-button img {
+  width: 50px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.settings-button img:hover {
+  transform: scale(1.1);
+}
+
 
 .main-content {
   flex-grow: 1;
