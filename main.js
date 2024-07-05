@@ -105,14 +105,31 @@ ipcMain.handle('save-config-en', async () => {
   return 'No executable selected for the application in English.';
 });
 
-ipcMain.handle('start-game-es', () => {
+ipcMain.handle('start-game-es', async () => {
+  if (!executablePathEs) {
+    dialog.showMessageBoxSync(mainWindow, {
+      type: 'error',
+      title: 'Error',
+      message: 'No se ha seleccionado ningún ejecutable para la aplicación en español.'
+    });
+    return 'No se ha seleccionado ningún ejecutable para la aplicación en español.';
+  }
   return startGame(executablePathEs, 'español');
 });
 
-ipcMain.handle('start-game-en', () => {
+ipcMain.handle('start-game-en', async () => {
+  if (!executablePathEn) {
+    dialog.showMessageBoxSync(mainWindow, {
+      type: 'error',
+      title: 'Error',
+      message: 'No executable selected for the application in English.'
+    });
+    return 'No executable selected for the application in English.';
+  }
   return startGame(executablePathEn, 'English');
 });
 
+//  TyranoScriptによって生成されたコード
 function startGame(executablePath, language) {
   return new Promise((resolve, reject) => {
     if (executablePath) {
@@ -137,10 +154,10 @@ function startGame(executablePath, language) {
             resolve(`Error al iniciar el juego en ${language}.`);
           } else if (stderr) {
             console.error(`Error: ${stderr}`);
-            resolve(`Error al iniciar el juego en ${language}.`);
+            resolve(`Error when starting the game in ${language}.`);
           } else {
             console.log(`Salida: ${stdout}`);
-            resolve(`Juego iniciado exitosamente en ${language}.`);
+            resolve(`Game successfully launched in ${language}.`);
           }
         });
       } else {
@@ -151,6 +168,7 @@ function startGame(executablePath, language) {
     }
   });
 }
+// tyranoScriptによって生成されたコードの終わり
 
 ipcMain.handle('get-executable-path-es', () => {
   return executablePathEs;
