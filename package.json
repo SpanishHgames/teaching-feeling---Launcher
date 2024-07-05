@@ -1,7 +1,7 @@
 {
   "name": "teaching-feeling---launcher",
   "version": "1.0.0",
-  "description": "",
+  "description": "Unofficial launcher of the educational game teaching feeling that contains fan-made versions of the game in different languages. 😗",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
