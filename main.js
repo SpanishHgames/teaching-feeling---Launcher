@@ -2,11 +2,35 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('child_process');
+const RPC = require('discord-rpc');
 
 let executablePathEs = null;
 let executablePathEn = null;
 let originalContent = null;
 let mainWindow = null;
+
+const clientId = '1144080613675106315';
+RPC.register(clientId);
+const rpc = new RPC.Client({ transport: 'ipc' });
+
+rpc.on('ready', () => {
+  console.log('Discord Rich Presence is ready.');
+  setMainActivity();
+});
+
+rpc.login({ clientId }).catch(console.error);
+
+function setMainActivity() {
+  rpc.setActivity({
+    details: 'Using TeachFeel',
+    state: 'Idle',
+    startTimestamp: new Date(),
+    largeImageKey: 'https://github.com/SpanishHgames/teaching-feeling---Launcher/blob/main/.github/img/3f392b5f13227650fd4b39a783ca2c4e.jpg?raw=true',
+    largeImageText: 'TeachFeel App',
+    smallImageKey: 'small-image-key',
+    smallImageText: 'Version 1.0.0',
+  });
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -129,7 +153,6 @@ ipcMain.handle('start-game-en', async () => {
   return startGame(executablePathEn, 'English');
 });
 
-//  TyranoScriptによって生成されたコード
 function startGame(executablePath, language) {
   return new Promise((resolve, reject) => {
     if (executablePath) {
@@ -159,6 +182,20 @@ function startGame(executablePath, language) {
             console.log(`Salida: ${stdout}`);
             resolve(`Game successfully launched in ${language}.`);
           }
+
+          // Reset Discord Rich Presence to main activity
+          setMainActivity();
+        });
+
+        // Update Discord Rich Presence
+        rpc.setActivity({
+          details: `Playing TeachFeel in ${language}`,
+          state: 'In-Game',
+          startTimestamp: new Date(),
+          largeImageKey: 'https://github.com/SpanishHgames/teaching-feeling---Launcher/blob/main/.github/img/3f392b5f13227650fd4b39a783ca2c4e.jpg?raw=true',
+          largeImageText: 'TeachFeel App',
+          smallImageKey: 'small-image-key',
+          smallImageText: `Version 1.0.0 (${language})`,
         });
       } else {
         resolve(`Archivo index no encontrado para la aplicación en ${language}.`);
@@ -168,7 +205,6 @@ function startGame(executablePath, language) {
     }
   });
 }
-// tyranoScriptによって生成されたコードの終わり
 
 ipcMain.handle('get-executable-path-es', () => {
   return executablePathEs;
