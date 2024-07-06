@@ -160,7 +160,7 @@ function startGame(executablePath, language) {
       if (fs.existsSync(indexPath)) {
         originalContent = fs.readFileSync(indexPath, 'utf8');
         const modifiedContent = originalContent.replace('</body>', `
-          <div style="position: fixed; top: 20px; left: 20px;"><div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-align: center; display: inline;">TeachFeel v1.0.0 (${language})</div></div>
+          <div style="position: fixed; top: 20px; left: 20px;"><div style="color: rgba(165, 161, 161, 0.6); font-family: Arial, sans-serif; font-size: 17px; font-weight: bold; text-align: center; display: inline;">TeachFeel v1.0.0 (${language})</div></div>
   </body>
         `);
         fs.writeFileSync(indexPath, modifiedContent);
