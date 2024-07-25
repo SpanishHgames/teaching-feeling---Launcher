@@ -4,12 +4,45 @@
   "description": "Unofficial launcher of the educational game teaching feeling that contains fan-made versions of the game in different languages. 😗",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "forge": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "https://raw.githubusercontent.com/SpanishHgames/teaching-feeling---Launcher/main/src/img/162644772.png"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "teaching-feeling---launcher"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
     "electron": "^31.1.0"
   },
   "dependencies": {
